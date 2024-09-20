@@ -3,15 +3,22 @@ using UnityEngine.UI;
 
 public class ICard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public Card activeCard;
+
+    Sprite cardArt;
+    string cardName;
+    string cardValue;
+    string cardDescription;
+
+    public void SetCard(){
+        cardArt = activeCard.cardImage;
+        cardName = activeCard.cardName;
+        cardValue = activeCard.value.ToString();
+        cardDescription = activeCard.description;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.A))
+            SetCard();
     }
 }

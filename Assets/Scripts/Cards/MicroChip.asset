@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2225d92dc05e4ba597c488ca7cf08d3, type: 3}
-  m_Name: TractorBeam
+  m_Name: MicroChip
   m_EditorClassIdentifier: 
-  value: 2
-  cardName: Tractor Beam
+  value: 3
+  cardName: Micro Chip
   cardImage: {fileID: 0}
-  description: Move two enemy units from the planet your ship is orbiting to any
-    planet with available space.
+  description: 
