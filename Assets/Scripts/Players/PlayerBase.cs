@@ -26,10 +26,14 @@ public class PlayerBase : MonoBehaviour
     public int GetHullValue => hull;
     public void SetHullValue(int _value) => hull = _value;
 
+    private bool isTurn;
+    public void SetIsTurn(bool _value) => isTurn = _value;
+
     void Start(){
         engine = engineMin;
         capacitor = capacitorMin;
         laser = laserMin;
         hull = hullMin;
+        isTurn = false;
     }
 }
