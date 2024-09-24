@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2225d92dc05e4ba597c488ca7cf08d3, type: 3}
-  m_Name: TractorBeam
+  m_Name: Shield
   m_EditorClassIdentifier: 
   value: 2
   numInDeck: 2
-  cardName: Tractor Beam
+  cardName: Quantum Shield
   cardImage: {fileID: 0}
-  description: On a planet your ship is orbiting, teleport two enemy units to any
-    planet with available space.
+  description: (Play before any BATTLE) Your pieces are protected and cannot be destroyed
+    this turn.
   hasEffect: 1
-  playerRestriction: 3
+  playerRestriction: 1
