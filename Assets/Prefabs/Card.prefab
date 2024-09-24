@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 6963473511824327704}
   - component: {fileID: 3661037273937612376}
   m_Layer: 5
-  m_Name: Text Box
+  m_Name: Description Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 6214438371419650108}
   - component: {fileID: 3625730567499659947}
   m_Layer: 5
-  m_Name: Text Box (TMP)
+  m_Name: Description Box (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1095,7 +1095,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb13dde7bd4024d1390ebe3a79af048f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeCard: {fileID: 0}
+  cardArt: {fileID: 6088475437170632353}
+  cardNameText: {fileID: 1520675038069631949}
+  cardValueText: {fileID: 1007290378053150830}
+  cardDescriptionText: {fileID: 3625730567499659947}
 --- !u!1 &8241538210485962094
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu]
 public class Card : ScriptableObject
@@ -14,6 +15,7 @@ public class Card : ScriptableObject
     public string description;
 
     public bool hasEffect = false;
+    public UnityEvent CardEvent;
 
     public enum PlayerRestriction{
         None,
@@ -23,4 +25,8 @@ public class Card : ScriptableObject
         Rhoz,
     }
     public PlayerRestriction playerRestriction = PlayerRestriction.None;
+
+    private bool inHand = false;
+    public bool GetInHand() => inHand;
+    public void SetInHand(bool _isInHand) => inHand = _isInHand; 
 }

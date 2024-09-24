@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DiceManager : MonoBehaviour
 {
-    public DiceManager instance;
+    public static DiceManager instance;
     void Awake(){
         if(instance == null)
             instance = this;

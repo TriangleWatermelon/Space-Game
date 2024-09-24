@@ -1,11 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    public DeckManager instance;
+    public static DeckManager instance;
     void Awake(){
         if(instance == null)
             instance = this;
@@ -38,5 +36,28 @@ public class DeckManager : MonoBehaviour
             cardsList[i] = cardsList[randomIndex];
             cardsList[randomIndex] = card;
         }
+    }
+
+    private int deckIndex = 0;
+    public Card GiveNextCard(){
+        Card nextCard = cardsList[deckIndex];
+        if(nextCard.GetInHand()){
+            deckIndex++;
+            nextCard = cardsList[deckIndex];
+            }
+        deckIndex++;
+        if(deckIndex >= deckSize){
+            ShuffleDeck();
+            deckIndex = 0;
+        }
+        return nextCard;
+    }
+
+    public List<Card> DrawCards(int _value){
+        List<Card> researchCards = new List<Card>();
+        for(int i = 0; i < _value; i++)
+            researchCards.Add(cardsList[deckIndex]);
+            deckIndex++;
+        return researchCards;
     }
 }
