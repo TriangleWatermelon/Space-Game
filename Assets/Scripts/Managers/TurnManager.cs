@@ -72,8 +72,11 @@ public class TurnManager : MonoBehaviour
     }
 
     int spacesToMove;
+    Ship selectedShip;
+    public void SetSelectedShip(Ship _ship) => selectedShip = _ship;
     public void Launch(){
         spacesToMove = RollEngineValue();
+        ChooseFlightDestination();
     }
     int distanceBetweenPlanets; //I will return to figure out how to set this value.
     public void ChooseFlightDestination(){
@@ -143,6 +146,14 @@ public class TurnManager : MonoBehaviour
         if(currentPlayer.GetUnitsAvailable() > 0)
             if(selectedPlanet.GetStation() != null)
                 selectedPlanet.AddUnitToPlanet(1, currentPlayer);
+    }
+
+    public void Retaliate(){
+        //Rule unclear, will figure out later
+    }
+
+    public void Upgrade(){
+        
     }
     #endregion
 

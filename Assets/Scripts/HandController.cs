@@ -65,6 +65,12 @@ public class HandController : MonoBehaviour
         RemoveFromHand(_card);
     }
 
+    int moneyEarned = 0;
+    public void SellCard(Card _card){
+        moneyEarned += _card.value;
+        RemoveFromHand(_card);
+    }
+
     public void AddResearchHand(Card[] _cards){
         for(int i = 0; i < _cards.Length; i++)
             researchCardObjects[i].SetActiveCard(_cards[i]);
