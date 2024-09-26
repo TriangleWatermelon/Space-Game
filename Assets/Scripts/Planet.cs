@@ -19,7 +19,6 @@ public class Planet : MonoBehaviour
     private int maxUnitsOnPlanet = 3;
     private int numUnitsOnPlanet = 0;
     public bool CanAddUnits() => numUnitsOnPlanet < maxUnitsOnPlanet;
-    // private List<PlayerUnit> unitsOnPlanet = new List<PlayerUnit>();
     public int GetUnitsOnPlanet() => numUnitsOnPlanet;
     public void AddUnitToPlanet(int _units, PlayerBase _player){
         for(int i = 0; i < _units; i++){
@@ -58,9 +57,12 @@ public class Planet : MonoBehaviour
     public PlayerBase GetControllingPlayer() => controllingPlayer;
     public void SetControllingPlayer(PlayerBase _player = null) => controllingPlayer = _player;
 
-    private int planetCheckDistance = 300;
+    [SerializeField]
     private List<Planet> nearbyPlanets = new List<Planet>();
+    public List<Planet> GetNearbyPlanets() => nearbyPlanets;
     private Dictionary<Planet, int> planetDistanceDict = new Dictionary<Planet, int>();
+    public Dictionary<Planet, int> GetPanetsWithDistance() => planetDistanceDict;
+    private int planetCheckDistance = 300;
     public void CheckForPlanets(){
         Planet p;
         foreach(RaycastHit h in Physics.SphereCastAll(transform.position, planetCheckDistance, Vector3.up)){
@@ -90,7 +92,6 @@ public class Planet : MonoBehaviour
             planetDistanceDict.Add(p, movementCost);
         }
         foreach(Planet p in planetDistanceDict.Keys){
-            Debug.Log($"{p.gameObject.name} is {planetDistanceDict[p]} away!");
             LineRenderer lineRenderer = ObjectPool.instance.GiveLineRenderer().GetComponent<LineRenderer>();
             lineRenderer.transform.parent = transform;
             lineRenderer.SetPosition(0, this.transform.position);
