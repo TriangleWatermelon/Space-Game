@@ -96,6 +96,12 @@ public class TurnManager : MonoBehaviour
         int attackPower = RollEngineValue();
         if(attackPower > defense){
             attackPower -= defense;
+            if(_station != null)
+                for(int i = 0; i < attackPower; i++){
+                    _station.DecreaseStationLevel();
+                    attackPower--;
+                    wallsDestroyed++;
+                }
             if(_ship != null)
                 for(int i = 0; i < attackPower; i++){
                     _ship.RemoveUnitsFromShip();
@@ -105,12 +111,7 @@ public class TurnManager : MonoBehaviour
                 _planet.RemoveUnitFromPlanet();
                 attackPower--;
             }
-            if(_station != null)
-                for(int i = 0; i < attackPower; i++){
-                    _station.DecreaseStationLevel();
-                    attackPower--;
-                    wallsDestroyed++;
-                }
+            
         }
     }
 
