@@ -149,7 +149,7 @@ public class TurnManager : MonoBehaviour
     }
 
     public void Retaliate(){
-        //Rule unclear, will figure out later
+        //If an enemy ship is on your planet, you may attack with station. Costs one action
     }
 
     public void Upgrade(){
