@@ -106,6 +106,7 @@ public class TurnManager : MonoBehaviour
             if(_ship != null)
                 for(int i = 0; i < attackPower; i++){
                     _ship.RemoveUnitsFromShip();
+                    currentPlayer.GetComponent<Rhoz>()?.KillSettler();
                     attackPower--;
                     }
             for(int i = 0; i < attackPower; i++){
