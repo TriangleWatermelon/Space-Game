@@ -97,6 +97,12 @@ public class TurnManager : MonoBehaviour
         int attackPower = RollEngineValue();
         if(attackPower > defense){
             attackPower -= defense;
+            if(_station != null)
+                for(int i = 0; i < attackPower; i++){
+                    _station.DecreaseStationLevel();
+                    attackPower--;
+                    wallsDestroyed++;
+                }
             if(_ship != null)
                 for(int i = 0; i < attackPower; i++){
                     _ship.RemoveUnitsFromShip();
@@ -107,12 +113,7 @@ public class TurnManager : MonoBehaviour
                 currentPlayer.GetComponent<Rhoz>()?.KillSettler();
                 attackPower--;
             }
-            if(_station != null)
-                for(int i = 0; i < attackPower; i++){
-                    _station.DecreaseStationLevel();
-                    attackPower--;
-                    wallsDestroyed++;
-                }
+            
         }
     }
 
@@ -151,7 +152,7 @@ public class TurnManager : MonoBehaviour
     }
 
     public void Retaliate(){
-        //Rule unclear, will figure out later
+        //If an enemy ship is on your planet, you may attack with station. Costs one action
     }
 
     public void Upgrade(){
