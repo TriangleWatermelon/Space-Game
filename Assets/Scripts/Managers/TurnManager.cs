@@ -44,9 +44,10 @@ public class TurnManager : MonoBehaviour
 
     #region Turn Actions
     PlayerBase currentPlayer;
+    public PlayerBase GetCurrentPlayer() => currentPlayer;
     public void DrawTech(){
         Card newCard = DeckManager.instance.GiveNextCard();
-        HandController.instance.AddToHand(newCard);
+        currentPlayer.hand.AddToHand(newCard);
     }
 
     private Planet selectedPlanet;
@@ -103,6 +104,7 @@ public class TurnManager : MonoBehaviour
                     }
             for(int i = 0; i < attackPower; i++){
                 _planet.RemoveUnitFromPlanet();
+                currentPlayer.GetComponent<Rhoz>()?.KillSettler();
                 attackPower--;
             }
             if(_station != null)
@@ -139,7 +141,7 @@ public class TurnManager : MonoBehaviour
         int cardsToResearch = 0;
         if(selectedPlanet.GetStation() != null)
             cardsToResearch = selectedPlanet.GetUnitsOnPlanet();
-        HandController.instance.AddResearchHand(DeckManager.instance.DrawCards(cardsToResearch).ToArray());
+        currentPlayer.hand.AddResearchHand(DeckManager.instance.DrawCards(cardsToResearch).ToArray());
     }
 
     public void Populate(){
@@ -176,4 +178,11 @@ public class TurnManager : MonoBehaviour
         }
         return rollVal;
     }
+
+    void EndTurn(){
+        OrbitController.instance.CheckPlayerControl();
+    }
+
+    //At the end of the turn, broadcast your deck to the other players to synchronize.
+    //Create a Player class that holds each reference that is currently a static instance.
 }

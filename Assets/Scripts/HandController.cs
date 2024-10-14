@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
-    public static HandController instance;
-    void Awake(){
-        if(instance == null)
-            instance = this;
-        else
-            Destroy(this);
-    }
+    // public static HandController instance;
+    // void Awake(){
+    //     if(instance == null)
+    //         instance = this;
+    //     else
+    //         Destroy(this);
+    // }
     [SerializeField]
     GameObject hand;
     [SerializeField]

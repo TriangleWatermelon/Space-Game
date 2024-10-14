@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Station : MonoBehaviour
@@ -9,15 +8,12 @@ public class Station : MonoBehaviour
         stationMat = new Material(renderer.material);
     }
 
-    [Range(0,3)]
+    [Range(0,4)]
     private int stationLevel;
     public int GetStationLevel() => stationLevel;
     public void IncreaseStationLevel(){
         stationLevel ++;
         switch(stationLevel){
-            case 0:
-            stationMat.color = Color.clear;
-            break;
             case 1:
             stationMat.color = level1Color;
             break;
@@ -26,6 +22,10 @@ public class Station : MonoBehaviour
             break;
             case 3:
             stationMat.color = level3Color;
+            break;
+            case 4:
+            stationMat.color = level3Color;
+            TurnManager.instance.GetCurrentPlayer().GetComponent<Caynians>()?.StationFull();
             break;
         }
     }
@@ -53,6 +53,8 @@ public class Station : MonoBehaviour
     Color level2Color = Color.yellow;
     [SerializeField]
     Color level3Color = Color.red;
+    [SerializeField]
+    Color level4Color = Color.black;
 
     private PlayerBase controllingPlayer;
     public PlayerBase GetControllingPlayer() => controllingPlayer;
