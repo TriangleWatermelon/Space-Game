@@ -23,4 +23,8 @@ public class OrbitController : MonoBehaviour
         if(druzhnnyControlledPlanets == 3)
             druzhnny.AddOnePoint();
     }
+
+    public void StartOrbit(){
+        //Fuck if I know, man... Just do an orbit
+    }
 }

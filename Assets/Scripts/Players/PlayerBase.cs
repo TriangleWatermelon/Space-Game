@@ -2,24 +2,28 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
 {
+    [Range(4,12)]
     protected int engine;
     protected int engineMin = 4;
     protected int engineMax = 12;
     public int GetEngineValue => engine;
     public virtual void SetEngineValue(int _value) => engine = _value;
     
+    [Range(1,4)]
     protected int capacitor;
     protected int capacitorMin = 1;
     protected int capacitorMax = 4;
     public int GetCapacitorValue => capacitor;
     public virtual void SetCapacitorValue(int _value) => capacitor = _value;
 
+    [Range(0,3)]
     protected int laser;
     protected int laserMin = 0;
     protected int laserMax = 3;
     public int GetLaserValue => laser;
     public virtual void SetLaserValue(int _value) => laser = _value;
 
+    [Range(0,5)]
     protected int hull;
     protected int hullMin = 2;
     protected int hullMax = 5;
@@ -51,4 +55,7 @@ public class PlayerBase : MonoBehaviour
     }
 
     public HandController hand;
+
+    Ship[] ships;
+    public Ship[] GetShips() => ships;
 }

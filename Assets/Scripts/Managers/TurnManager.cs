@@ -40,6 +40,8 @@ public class TurnManager : MonoBehaviour
             turnIndex = 0;
         PlayerList[turnIndex].SetIsTurn(true);
         currentPlayer = PlayerList[turnIndex];
+        if(turnCounter/playerCount == 1)
+            OrbitController.instance.StartOrbit();
     }
 
     #region Turn Actions
@@ -48,6 +50,15 @@ public class TurnManager : MonoBehaviour
     public void DrawTech(){
         Card newCard = DeckManager.instance.GiveNextCard();
         currentPlayer.hand.AddToHand(newCard);
+    }
+    int shipActionsAvailable = 0;
+    int shipActionReset = 0;
+    public void CalculateShipActions(){
+        foreach(Ship s in currentPlayer.GetShips())
+            if(s.GetActionStatus())
+                shipActionsAvailable++;
+
+        shipActionReset = shipActionsAvailable;
     }
 
     private Planet selectedPlanet;
@@ -70,6 +81,7 @@ public class TurnManager : MonoBehaviour
             _ship.AddUnitToShip();
             selectedPlanet.RemoveUnitFromPlanet();
         }
+        shipActionsAvailable--;
     }
 
     int spacesToMove;
@@ -114,14 +126,28 @@ public class TurnManager : MonoBehaviour
                 currentPlayer.GetComponent<Rhoz>()?.KillSettler();
                 attackPower--;
             }
-            
         }
+        shipActionsAvailable--;
     }
 
     int wallsDestroyed = 0;
     public void Conquer(){
         for(int i = 0; i < wallsDestroyed; i++)
+            selectedPlanet.GetStation().SetControllingPlayer(currentPlayer);
             selectedPlanet.GetStation().IncreaseStationLevel();
+        shipActionsAvailable--;
+    }
+
+    bool firstCheck = true;
+    int recursionAmount = 0;
+    public void CheckRecur(){
+        if(firstCheck)
+            recursionAmount = currentPlayer.GetCapacitorValue - 1;
+
+        if(recursionAmount > 0){
+            shipActionsAvailable = shipActionReset;
+            recursionAmount --;
+        }
     }
 
     Station[] stations;

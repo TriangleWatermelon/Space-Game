@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+
+    private bool hasAction = true;
+    public bool GetActionStatus() => hasAction;
+    public void ResetAction() => hasAction = true;
+
     private int maxUnits = 3;
     public void SetMaxUnits(int _value) => maxUnits = _value;
     private int unitsOnShip;
@@ -30,11 +35,13 @@ public class Ship : MonoBehaviour
             dockedPlanet.AddUnitToPlanet(1, controllingPlayer);
             RemoveUnitsFromShip();
         }
+        hasAction = false;
     }
     Vector3 shipOffset = new Vector3(75, 0, 75);
     public void MoveToPlanet(Planet _planet){
         transform.position = _planet.transform.position + shipOffset;
         _planet.SetSelectedShip(this);
         dockedPlanet = _planet;
+        hasAction = false;
     }
 }
