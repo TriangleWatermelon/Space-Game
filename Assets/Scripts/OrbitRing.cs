@@ -9,6 +9,8 @@ public class OrbitRing : MonoBehaviour
 
     void Awake(){
         druzhnny = FindObjectOfType<Druzhnny>();
+        foreach(var p in planets)
+            p.transform.parent = this.transform;
     }
 
     bool hasDruzhnnyPlanet = false;

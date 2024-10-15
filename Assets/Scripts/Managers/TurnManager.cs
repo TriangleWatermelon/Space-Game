@@ -36,11 +36,11 @@ public class TurnManager : MonoBehaviour
         turnCounter ++;
         PlayerList[turnIndex].SetIsTurn(false);
         turnIndex ++;
-        if(turnIndex >= playerCount)
+        if(turnIndex >= playerCount - 1)
             turnIndex = 0;
         PlayerList[turnIndex].SetIsTurn(true);
         currentPlayer = PlayerList[turnIndex];
-        if(turnCounter/playerCount == 1)
+        if(turnIndex/playerCount - 1 == 1)
             OrbitController.instance.StartOrbit();
     }
 

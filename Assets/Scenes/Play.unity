@@ -269,10 +269,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 2000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 800
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -295,14 +295,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130105150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &130105154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +410,18 @@ MonoBehaviour:
 --- !u!114 &1065366159 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1057068956151701998, guid: 9893f735d08bc46c4bb0bbd324c3a82e,
+    type: 3}
+  m_PrefabInstance: {fileID: 220297631308623480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3c032e4bec948deaf3674d522c8e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1439489324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9182279245617098597, guid: 9893f735d08bc46c4bb0bbd324c3a82e,
     type: 3}
   m_PrefabInstance: {fileID: 220297631308623480}
   m_PrefabAsset: {fileID: 0}
@@ -937,6 +949,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8964120128919538860, guid: ecc50273fb43e46bcbeb983778336dc5,
         type: 3}
+      propertyPath: planets.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964120128919538860, guid: ecc50273fb43e46bcbeb983778336dc5,
+        type: 3}
       propertyPath: planets.Array.data[0]
       value: 
       objectReference: {fileID: 1956012838}
@@ -970,6 +987,11 @@ PrefabInstance:
       propertyPath: planets.Array.data[6]
       value: 
       objectReference: {fileID: 1627433817}
+    - target: {fileID: 8964120128919538860, guid: ecc50273fb43e46bcbeb983778336dc5,
+        type: 3}
+      propertyPath: planets.Array.data[7]
+      value: 
+      objectReference: {fileID: 1439489324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1202,6 +1224,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pool Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038100353208919716, guid: 1fcb71d7c7fbe4067a2750ebe043ede3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -4,14 +4,13 @@ using TMPro;
 
 public class Planet : MonoBehaviour
 {
+    [SerializeField]
     private TextMeshProUGUI nameText;
+    [SerializeField]
     private IntButton intButton;
 
     void Start(){
-        nameText = GetComponentInChildren<TextMeshProUGUI>();
         nameText.text = gameObject.name;
-
-        intButton = GetComponentInChildren<IntButton>();
 
         CheckForPlanets();
     }
@@ -62,8 +61,9 @@ public class Planet : MonoBehaviour
     public List<Planet> GetNearbyPlanets() => nearbyPlanets;
     private Dictionary<Planet, int> planetDistanceDict = new Dictionary<Planet, int>();
     public Dictionary<Planet, int> GetPanetsWithDistance() => planetDistanceDict;
-    private int planetCheckDistance = 300;
+    private int planetCheckDistance = 400;
     public void CheckForPlanets(){
+        nearbyPlanets.Clear();
         Planet p;
         foreach(RaycastHit h in Physics.SphereCastAll(transform.position, planetCheckDistance, Vector3.up)){
             if(p = h.collider.GetComponentInParent<Planet>())
@@ -71,31 +71,40 @@ public class Planet : MonoBehaviour
                     if(p != this)
                         nearbyPlanets.Add(p);
         }
+        lineRenderer.positionCount = nearbyPlanets.Count * 2;
         SetTravelDistances();
     }
+    [SerializeField]
+    LineRenderer lineRenderer;
+    int lineIndex = 0;
     void SetTravelDistances(){
+        planetDistanceDict.Clear();
+        lineIndex = 0;
         int movementCost = 1;
         foreach(Planet p in nearbyPlanets){
             float distance = Vector3.Distance(transform.position, p.transform.position);
-            if(distance < 100)
+            if(distance < 75)
                 movementCost = 1;
-            if(distance >= 100 && distance < 150)
+            if(distance >= 75 && distance < 125)
                 movementCost = 2;
-            if(distance >= 150 && distance < 200)
+            if(distance >= 125 && distance < 200)
                 movementCost = 3;
-            if(distance >= 200 && distance < 250)
+            if(distance >= 200 && distance < 275)
                 movementCost = 4;
-            if(distance >= 250 && distance < 300)
+            if(distance >= 275 && distance < 350)
                 movementCost = 5;
-            if(distance >= 300)
+            if(distance >= 350)
                 movementCost = 6;
             planetDistanceDict.Add(p, movementCost);
         }
-        foreach(Planet p in planetDistanceDict.Keys){
-            LineRenderer lineRenderer = ObjectPool.instance.GiveLineRenderer().GetComponent<LineRenderer>();
-            lineRenderer.transform.parent = transform;
-            lineRenderer.SetPosition(0, this.transform.position);
-            lineRenderer.SetPosition(1, p.transform.position);
+        // for(int i = 0; i < nearbyPlanets.Count; i += 2){
+        //     lineRenderer.SetPosition(i, this.transform.position);
+        //     lineRenderer.SetPosition(i + 1, nearbyPlanets[i].transform.position);
+        // }
+        foreach(Planet p in nearbyPlanets){
+            lineRenderer.SetPosition(lineIndex, this.transform.position);
+            lineRenderer.SetPosition(lineIndex + 1, p.transform.position);
+            lineIndex += 2;
         }
     }
 }
